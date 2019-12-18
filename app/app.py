@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect
 import pandas as pd
+from sqlalchemy import create_engine
 import pymongo
 import scrape_ukelection
 
@@ -26,10 +27,15 @@ import scrape_ukelection
 
 #To execute etl of all needed data 
 def execute_etl():
+
+    #(1) Clear Existing Data
+    clear_data()
     
-    #(1) import constituency data
+    #(2) import constituency data
+    import_constituency()
     
-    #(2) import party data
+    #(3) import party data
+    import_parties()
     
     #(4) import brexit result data
     
@@ -38,7 +44,7 @@ def execute_etl():
     
 
     # Run the scrape function
-    import_election_result()
+    #import_election_result()
     
 
     # Update the Mongo database using update and upsert=True
@@ -46,6 +52,55 @@ def execute_etl():
 
     # Redirect back to home page
     #return redirect("/")
+
+def clear_data():
+    connection_string = "postgres:root123@localhost:5432/ukelection_db"
+    engine = create_engine(f'postgresql://{connection_string}')
+    conn = engine.connect()
+    conn.execute("delete from constituencies")
+    conn.execute("delete from parties")
+
+    conn.close()    
+    
+def import_constituency():
+    constituency_file = "datafiles/constituency_ids.csv"
+    df_constituency = pd.read_csv(constituency_file)
+    
+    # Create a filtered dataframe from specific columns
+    constituency_cols = ["CONST ID","ONS ID", "Constituency"]
+    df_transf_constituency= df_constituency[constituency_cols].copy()
+
+    # Rename the column headers
+    df_transf_constituency = df_transf_constituency.rename(columns={"CONST ID": "const_id",
+                                                            "ONS ID": "ons_code",
+                                                              "Constituency": "constituency_name"})
+
+    # Clean the data by dropping duplicates and setting the index
+    df_transf_constituency.drop_duplicates("const_id", inplace=True)
+    df_transf_constituency.set_index("const_id", inplace=True)
+    
+    connection_string = "postgres:root123@localhost:5432/ukelection_db"
+    engine = create_engine(f'postgresql://{connection_string}')
+    
+    df_transf_constituency.to_sql(name='constituencies', con=engine, if_exists='append', index=True)
+    
+def import_parties():
+    party_file = "datafiles/parties_pro_or_anti.csv"
+    df_party = pd.read_csv(party_file)
+    
+    # Create a filtered dataframe from specific columns
+    party_cols = ["party_id", "party_code", "party_name", "pro_brexit"]
+    df_transf_party= df_party[party_cols].copy()
+
+    # Clean the data by dropping duplicates and setting the index
+    df_transf_party.drop_duplicates("party_id", inplace=True)
+    df_transf_party.set_index("party_id", inplace=True)
+    
+    connection_string = "postgres:root123@localhost:5432/ukelection_db"
+    engine = create_engine(f'postgresql://{connection_string}')
+    
+    df_transf_party.to_sql(name='parties', con=engine, if_exists='append', index=True)
+    
 
 def import_election_result():
     lst_ukelection_data = scrape_ukelection.scrape_info()
