@@ -1,4 +1,5 @@
 from flask import Flask, render_template, redirect
+import pandas as pd
 import pymongo
 import scrape_ukelection
 
@@ -23,12 +24,22 @@ import scrape_ukelection
 #    return render_template("index.html", vacation=destination_data)
 
 
-# Route that will trigger the scrape function
-#@app.route("/scrape")
-def scrape():
+#To execute etl of all needed data 
+def execute_etl():
+    
+    #(1) import constituency data
+    
+    #(2) import party data
+    
+    #(4) import brexit result data
+    
+    #(5) import election result data
+    
+    
 
     # Run the scrape function
-    ukelection_data = scrape_ukelection.scrape_info()
+    import_election_result()
+    
 
     # Update the Mongo database using update and upsert=True
     #mongo.db.collection.update({}, costa_data, upsert=True)
@@ -36,7 +47,12 @@ def scrape():
     # Redirect back to home page
     #return redirect("/")
 
+def import_election_result():
+    lst_ukelection_data = scrape_ukelection.scrape_info()
+    df_ukelection_data = pd.DataFrame(lst_ukelection_data)
+    df_ukelection_data.to_csv("datafiles/ukelection_results.csv", index = False)
+
 
 #if __name__ == "__main__":
 #app.run(debug=True)
-scrape()
+execute_etl()

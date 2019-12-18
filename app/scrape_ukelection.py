@@ -1,6 +1,7 @@
 from splinter import Browser
 from bs4 import BeautifulSoup as bs
 import time
+import re
 
 
 def init_browser():
@@ -23,26 +24,56 @@ def scrape_info():
 
     #Get all links all constituencies election results page
     constituencies = soup.select(".az-table__row")
+    
+    #list of constituency election results
+    election_results = []     
+    
+    i=0 #for testing
+    for constituent in constituencies: 
+        
+        #bbc election result by constituency
+        bbc_er_href =  constituent.select_one("a")["href"]        
+       
+        ons_code = bbc_er_href.split("/")[-1]
+       
+        constituency_name = constituent.select_one("a").text
+        
+        print(f"link to {bbc_er_href}")
 
-    for constituent in constituencies:        
-        const_href =  constituent.select_one("a")["href"]
-        constituent_name = constituent.select_one("a").text
-        nation = constituent.select_one("td").text
-        print(f"link to {const_href}")
-
-        browser.visit(f"https://www.bbc.com{const_href}")
+        browser.visit(f"https://www.bbc.com{bbc_er_href}")
         time.sleep(1)
         html = browser.html
         soup = bs(html, "html.parser")
-        party_hold =  soup.select_one(".ge2019-constituency-result-headline__text").text    # which party won the constituencies
-        voters_count = soup.select_one(".ge2019-constituency-result-turnout__value").text   # total voters 
-        con_votes_share = soup.select_one(".ge2019-vote-share__party-title:contains('CON')").parent.parent.select_one(".ge2019-vote-share__value").text                 # conservative votes share
         
-        print(f"{constituent_name} {nation} {party_hold} {voters_count} {con_votes_share}")
+        probrexit_voteshare = 0
+        
+        party_voteshares = soup.select(f".ge2019-vote-share__party-title")
         
 
+        for party_voteshare in party_voteshares:                 
+            party_code = party_voteshare.text
+            txt_votes_share = re.sub("[^0-9\.]","",party_voteshare.parent.parent.select_one(".ge2019-vote-share__value").text ) # conservative votes share
+            votes_share = float(txt_votes_share)/100.0
+        
+            result = {
+                "ons_code": ons_code,
+                "constituency_name": constituency_name,
+                "party_code":  party_code,            
+                "votes_share": votes_share,
+                "year": 2019
+            }            
+            print(result)
+        
+            election_results.append(result)
+            
+        i = i + 1
+        
+        if(i == 5):
+            break
+            
+                
     # Close the browser after scraping
     browser.quit()
 
     # Return results
-    return const_result_hrefs
+    return election_results
