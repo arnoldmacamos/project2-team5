@@ -28,7 +28,6 @@ def scrape_info():
     #list of constituency election results
     election_results = []     
     
-    i=0 #for testing
     for constituent in constituencies: 
         
         #bbc election result by constituency
@@ -56,8 +55,7 @@ def scrape_info():
             votes_share = float(txt_votes_share)/100.0
         
             result = {
-                "ons_code": ons_code,
-                "constituency_name": constituency_name,
+                "ons_code": ons_code,               
                 "party_code":  party_code,            
                 "votes_share": votes_share,
                 "year": 2019
@@ -65,11 +63,6 @@ def scrape_info():
             print(result)
         
             election_results.append(result)
-            
-        i = i + 1
-        
-        if(i == 5):
-            break
             
                 
     # Close the browser after scraping
