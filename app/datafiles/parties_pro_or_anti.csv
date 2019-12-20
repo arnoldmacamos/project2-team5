@@ -1,64 +1,64 @@
 party_id,party_code,party_name,pro_brexit
-1,LAB,Party,Y
-2,CON,Party,Y
-3,BRX,Party,N
-4,PC,Party,N
-5,LD,Party,N
-6,IND,Party,Y
-7,SNP,Party,Y
-8,GRN,Party,Y
-9,MRLP,Party,Y
-10,LIB,Party,N
-11,ASH,Party,N
-12,YRKS,Party,Y
-13,SDP,Party,N
-14,HWDI,Party,N
-15,DUP,Party,N
-16,APNI,Party,N
-17,UUP,Party,N
-18,SF,Party,N
-19,SDLP,Party,N
-20,AONT,Party,N
-21,PBP,Party,N
-22,ANWP,Party,N
-23,ED,Party,N
-24,BSJP,Party,N
-25,CPA,Party,N
-26,UKIP,Party,N
-27,YESH,Party,N
-28,CHP,Party,N
-29,UGP,Party,N
-30,REN,Party,N
-31,TIG,Party,N
-32,BPI,Party,N
-33,WRP,Party,N
-34,GWLD,Party,N
-35,LBT,Party,N
-36,PATR,Party,N
-37,ADV,Party,N
-38,SPE,Party,N
-39,CVP,Party,N
-40,WEP,Party,N
-41,NE,Party,N
-42,CMU,Party,N
-43,YPP,Party,N
-44,CMUK,Party,N
-45,VPP,Party,N
-46,PP,Party,N
-47,JACP,Party,N
-48,SLP,Party,N
-49,BNP,Party,N
-50,INET,Party,N
-51,AGS,Party,N
-52,SEQ,Party,N
-53,POS,Party,N
-54,CF,Party,N
-55,PFP,Party,N
-56,SHRP,Party,N
-57,LNIN,Party,N
-58,MK,Party,N
-59,CP,Party,N
-60,MTHR,Party,N
-61,WY,Party,N
-62,CLGB,Party,N
-63,TCRP,Party,N
+1,LAB,Labour Party,N
+2,CON,Conservative Party,Y
+3,BRX,Brexit Party,Y
+4,PC,Plaid Cymru,N
+5,LD,Liberal Democrats,N
+6,IND,Independent,Y
+7,SNP,Scottish National Party,N
+8,GRN,Green Party,N
+9,MRLP,Official Monster Raving Loony Party,Y
+10,LIB,Liberal Party,Y
+11,ASH,Ashfield Independents,N
+12,YRKS,Yorkshire Party,N
+13,SDP,Social Democratic Party,Y
+14,HWDI,Heavy Woollen District Independents,Y
+15,DUP,Democratic Unionist Party,Y
+16,APNI,Alliance Party of Northern Ireland,N
+17,UUP,Ulster Unionist Party,Y
+18,SF,Sinn Fein,N
+19,SDLP,Social Democratic and Labour Party,N
+20,AONT,Aontu,N
+21,PBP,People Before Profit,Y
+22,ANWP,Animal Welfare Party,N
+23,ED,English Democrats,Y
+24,BSJP,Birkenhead Social Justice Party,Y
+25,CPA,Christian Peoples Alliance,Y
+26,UKIP,UK Independence Party,Y
+27,YESH,Yeshua Party,N
+28,CHP,Christian Party,Y
+29,UGP,The Universal Good Party,N
+30,REN,Renew Party,N
+31,TIG,Independent Group For Change,N
+32,BPI,Burnley & Padiham Independent Party,Y
+33,WRP,Workers Revolutionary Party,Y
+34,GWLD,Gwlad Gwlad,Y
+35,LBT,Libertarian,Y
+36,PATR,Patria,Y
+37,ADV,Advance Together,N
+38,SPE,Speaker,Y
+39,CVP,The Cynon Valley Party,N
+40,WEP,Women's Equality Party,N
+41,NE,North East Party,N
+42,CMU,Communities United Party,N
+43,YPP,Young People's Party UK,Y
+44,CMUK,Citizens Movement Party UK,N
+45,VPP,Veterans and People's Party,Y
+46,PP,The Peace Party,N
+47,JACP,Justice & Anti-Corruption Party,Y
+48,SLP,Socialist Labour Party,Y
+49,BNP,British National Party,N
+50,INET,Independent Network,Y
+51,AGS,Alliance for Green Socialism,Y
+52,SEQ,Socialist Equality Party,N
+53,POS,Proud of Oldham & Saddleworth,Y
+54,CF,CumbriaFirst,Y
+55,PFP,Psychedelic Future Party,N
+56,SHRP,Shropshire Party,Y
+57,LNIN,Lincolnshire Independents,Y
+58,MK,Mebyon Kernow,Y
+59,CP,The Common People Party,N
+60,MTHR,Motherworld Party,N
+61,WY,Wycombe Independents,N
+62,CLGB,Communist League,Y
+63,TCRP,The Constitution and Reform Party,N
