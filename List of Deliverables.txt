@@ -1,0 +1,10 @@
+List of ETL Project Deliverables
+1. Group5-ETL Project Proposal.doc
+2. Database Schema (folder:  database_schema)
+	a. create_database.sql
+	b. table_schemata.sql
+	c. ukelectiondb_datamodel.png
+3. ETL Application (folder: app)
+	a. app.py
+	b. scrape_ukelection.py
+	c. datafiles folder for all csv files

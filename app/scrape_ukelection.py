@@ -51,7 +51,7 @@ def scrape_info():
 
         for party_voteshare in party_voteshares:                 
             party_code = party_voteshare.text
-            txt_votes_share = re.sub("[^0-9\.]","",party_voteshare.parent.parent.select_one(".ge2019-vote-share__value").text ) # conservative votes share
+            txt_votes_share = re.sub("[^0-9\.]","",party_voteshare.parent.parent.select_one(".ge2019-vote-share__value").text ) 
             votes_share = float(txt_votes_share)/100.0
         
             result = {
